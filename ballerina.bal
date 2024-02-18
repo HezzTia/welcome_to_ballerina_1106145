@@ -1,13 +1,14 @@
 
 //my name at the end
 
-//SIMPLE HELLO WORLD
+
 import ballerina/io;
 import ballerina/os;
 import ballerina/file;
+import ballerina/http;
 
-
-public function helloWorld() {
+//SIMPLE HELLO WORLD
+public function main() {
 
    io:println("Hello World!");
 
@@ -27,13 +28,14 @@ public function helloWorld() {
 // STANDARD STREAMS: ERROR
 public function standardStreamsError() returns error? {
     io:println(io:stderr, "This is an error message");
+
     return ();
 }
 
 
 // FILE I/O
 //IF YOU WANT TO RUN IT, DELETE THE ALREADY CREATED FILE FIRST
-public function main() returns error? {
+public function fileInputOutput() returns error? {
     check file:create ("C:/Users/Emily Cabrera/.vscode/ballerina/exampleballerina.txt");
     io:println("File created successfully");
 
@@ -46,6 +48,18 @@ public function main() returns error? {
     string readContent = check io:fileReadString(textFilePath1);
     io:println(readContent);
 }
+
+// NETWORK I/O
+public function networkInputOutput() returns error? {
+    http:Listener listener = check new http:Listener(8080);
+
+    service / on listener {
+        resource function get string hello() returns error? {
+            return "Hello, World!";
+        }
+    }
+}
+
 
 
 

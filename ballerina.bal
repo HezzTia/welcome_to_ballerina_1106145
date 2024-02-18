@@ -7,5 +7,3 @@
 //    io:println("Hello World!");
 //}
 
-
-import ballerina/io;

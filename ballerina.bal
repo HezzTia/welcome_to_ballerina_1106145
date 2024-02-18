@@ -29,4 +29,7 @@ public function main function() returns error? {
 
     // Network I/O
     handleNetworkIO();
+
+    return ();
 }
+
